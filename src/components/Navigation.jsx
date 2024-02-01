@@ -6,6 +6,7 @@ const list = [
 	{ name: 'Kontakt', path: '/contact' },
 	{ name: 'Panel admina', path: '/admin' },
 	{ name: 'Timer', path: '/timer' },
+	{ name: 'Counter', path: '/counter' },
 ];
 
 export default function Navigation() {

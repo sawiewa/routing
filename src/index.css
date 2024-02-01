@@ -5,5 +5,20 @@
 }
 html {
 	font-family: 'Open Sans', sans-serif;
-	font-size: 20px;
+	font-size: 10px;
+}
+button {
+	font: inherit;
+	cursor: pointer;
+	background-color: #3c0080;
+	border: 1px solid #3c0080;
+	color: white;
+	padding: 0.5rem 1.5rem;
+	border-radius: 6px;
+}
+
+button:hover,
+button:active {
+	background-color: #5b14ac;
+	border-color: #5b14ac;
 }

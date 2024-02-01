@@ -6,7 +6,6 @@ import startPage from '../images/start.jpg';
 import '../styles/Header.css';
 // import { Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import HeaderAuth from './HeaderAuth';
 export default function Header() {
 	const images = [img1, img2, img3, wrongPage, startPage];
 	const time = 4000;
@@ -26,11 +25,7 @@ export default function Header() {
 	});
 
 	return (
-		<>
-			<img src={images[imageActiveIndex]} alt='obrazek'></img>
-			<HeaderAuth />
-		</>
-
+		<img src={images[imageActiveIndex]} alt='obrazek'></img>
 		// <Routes>
 		// 	<Route path='/' element={<img src={startPage} alt='admin' />} />
 		// 	<Route path='/contact' element={<img src={img3} alt='kontakt' />} />

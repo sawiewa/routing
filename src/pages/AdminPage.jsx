@@ -1,5 +1,8 @@
+import Auth from '../components/Auth.js';
+
+
 const AdminPage = () => {
-	return <div>Admin Page</div>;
+	return <Auth />;
 };
 
 export default AdminPage;

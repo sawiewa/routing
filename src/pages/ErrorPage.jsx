@@ -1,5 +1,5 @@
 const ErrorPage = () => {
-	return <div>Produkty czy cos tam</div>;
+	return <div>Nie ma takiej strony!</div>;
 };
 
 export default ErrorPage;

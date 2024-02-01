@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import '../styles/Contact.css';
-import { unstable_usePrompt as usePrompt } from 'react-router-dom';
 
 const ContactPage = () => {
 	const [stateContact, setStateContact] = useState('');
@@ -21,11 +20,12 @@ const ContactPage = () => {
 	console.log(stateContact);
 	return (
 		<div className='contact'>
-			<form onSubmit={event => {
-        event.preventDefault();
-        event.target.reset();
-        //setIsBlocking(false);
-      }}>
+			<form
+				onSubmit={(event) => {
+					event.preventDefault();
+					event.target.reset();
+					//setIsBlocking(false);
+				}}>
 				<h3>Skontaktuj się z nami</h3>
 				<textarea
 					value={stateContact}
