@@ -10,6 +10,7 @@ export default function Timer({ title }) {
 	const initialTime = useSelector((state) => state.timer.initialTime);
 	const isActive = useSelector((state) => state.timer.isActive);
 	const modal = useRef();
+	const modalText = useRef('');
 	const handleStartAgain = () => {
 		dispatch(timerActions.startAgain());
 		console.log('jeszcze raz');
@@ -19,6 +20,7 @@ export default function Timer({ title }) {
 		console.log('kontynujesz odliczanie');
 	};
 	const handleStop = () => {
+		modalText.current = 'zatrzymałeś odliczanie';
 		modal.current.open();
 		dispatch(timerActions.stopTimer(time));
 		console.log('zatrzymales odliczanie');
@@ -31,6 +33,10 @@ export default function Timer({ title }) {
 				dispatch(timerActions.start(time));
 			}, 1000);
 		}
+		if (!isActive & (time === 0)) {
+			modalText.current = 'odliczanie zakończone';
+			modal.current.open();
+		}
 		return () => {
 			clearInterval(timer);
 			//dispatch(timerActions.startAgain(time));
@@ -41,7 +47,7 @@ export default function Timer({ title }) {
 	return (
 		<>
 			<Modal ref={modal} buttonCaption='Zamknij'>
-				test modal
+				{modalText.current}
 			</Modal>
 			<p>{title}</p>
 			<p>Odliczamy od {initialTime}</p>
