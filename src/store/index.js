@@ -1,16 +1,15 @@
-//import { createStore } from 'redux'; nie potrzebne ponieważ uzywamy redyx toolkit, 
-//------mergowanie wszystkich sliceów czyli wycinków 
+//import { createStore } from 'redux'; nie potrzebne ponieważ uzywamy redyx toolkit,
+//------mergowanie wszystkich sliceów czyli wycinków
 import { configureStore } from '@reduxjs/toolkit';
 
 import counterReducer from './counter-slice';
 import authReducer from './auth-slice';
+import timerReducer from './timer-slice';
 
 //mapa reduktorów:
 const store = configureStore({
-	reducer: { counter: counterReducer, auth: authReducer },
+	reducer: { counter: counterReducer, auth: authReducer, timer: timerReducer },
 });
-
-
 
 export default store;
 

@@ -1,64 +1,53 @@
-import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { timerActions } from '../store/timer-slice';
+import { useEffect } from 'react';
 
 export default function Timer({ title }) {
-	const [timeToCounter, setTimeToCounter] = useState('');
-	const [timeEnd, setTimeEnd] = useState(false);
-	const handleInputChange = (event) => {
-		setTimeToCounter(event.target.value);
-	};
-	const handleCounter = (timeToCounter) => {
-		if (timeToCounter > 0) {
-			setTimeToCounter((oldCount) => oldCount - 1);
-		} else if (timeToCounter === 0) {
-			setTimeEnd(true);
-		}
-	};
-
-	const handleReset = () => {
-		setTimeEnd(true);
+	const dispatch = useDispatch();
+	const time = useSelector((state) => state.timer.timer);
+	const initialTime = useSelector((state) => state.timer.initialTime);
+	const isActive = useSelector((state) => state.timer.isActive);
+	const handleStartAgain = () => {
+		dispatch(timerActions.startAgain());
+		console.log('jeszcze raz');
 	};
 	const handleStart = () => {
-		setTimeEnd(false);
+		dispatch(timerActions.startContinue(time));
+		console.log('kontynujesz odliczanie');
+	};
+	const handleStop = () => {
+		dispatch(timerActions.stopTimer(time));
+		console.log('zatrzymales odliczanie');
 	};
 
 	useEffect(() => {
 		let timer;
-		if (!timeEnd) {
+		if (isActive) {
 			timer = setInterval(() => {
-				handleCounter(timeToCounter);
+				dispatch(timerActions.start(time));
 			}, 1000);
-		} else {
-			clearInterval(timer);
 		}
-		return () => clearInterval(timer);
-	}, [timeToCounter, timeEnd]);
-
-	// useEffect(() => {
-	// 	const timer = setInterval(() => {
-	// 		handleCounter(timeToCounter);
-	// 	}, 1000);
-	// 	return () => clearInterval(timer);
-	// }, [timeToCounter]);
+		return () => {
+			clearInterval(timer);
+			//dispatch(timerActions.startAgain(time));
+			console.log('clear interval PO use ef, z returna');
+		};
+	}, [time, dispatch, isActive]);
 
 	return (
 		<>
 			<p>{title}</p>
-			<p>
-				<label>Wprowadź czas do odliczania</label>
-				<input
-					type='number'
-					onChange={handleInputChange}
-					value={timeToCounter}
-				/>
-			</p>
-			<button onClick={handleReset}>{timeEnd ? 'Zatrzymano' : 'STOP'}</button>
-			<p>Pozostały czas {timeToCounter}</p>
-			<p>{timeEnd && 'koniec odliczania'}</p>
+			<p>Odliczamy od {initialTime}</p>
+			<p>odliczono {initialTime-time}</p>
+			<p>Pozostały czas {time}</p>
+			<p>{time === 0 && 'koniec odliczania'}</p>
 
 			<button onClick={handleStart}>
-				{!timeEnd ? 'Trwa odliczanie' : 'Odliczaj ponownie'}
+				{isActive ? 'odliczanie trwa' : 'START'}
 			</button>
-			{timeToCounter === 0 && 'wprowadź nową wartość > 0'}
+			<button onClick={handleStop}>{isActive ? 'STOP' : 'Zatrzymano'}</button>
+			<button onClick={handleStartAgain}>RESET</button>
+			<p>{time === 0 && 'wprowadź nową wartość'} </p>
 		</>
 	);
 }
