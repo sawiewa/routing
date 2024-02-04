@@ -5,10 +5,16 @@ import { configureStore } from '@reduxjs/toolkit';
 import counterReducer from './counter-slice';
 import authReducer from './auth-slice';
 import timerReducer from './timer-slice';
+import modalReducer from './modal-slice';
 
 //mapa reduktorów:
 const store = configureStore({
-	reducer: { counter: counterReducer, auth: authReducer, timer: timerReducer },
+	reducer: {
+		counter: counterReducer,
+		auth: authReducer,
+		timer: timerReducer,
+		modal: modalReducer,
+	},
 });
 
 export default store;

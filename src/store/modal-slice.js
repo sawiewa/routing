@@ -1,10 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initial = { modals: [] };
 const modalSlice = createSlice({
 	name: 'modal',
-	initialState: {
-		modals:[],
-	},
+	initialState: initial,
 	reducers: {
 		addModal(state, action) {
 			const newModal = action.payload;
@@ -12,18 +11,16 @@ const modalSlice = createSlice({
 				(modal) => modal.id === newModal.id
 			);
 			if (!existingModal) {
-				state.modals.push({
-					id: newModal.id,
-					name: newModal.title,
-					description: newModal.description
-				});
-			} 
+			state.modals.push({
+				id: newModal.id,
+				title: newModal.title,
+				description: newModal.description,
+			});
+			}
 		},
 		removeModalFromList(state, action) {
 			const removeModalId = action.payload;
 			state.modals = state.modals.filter((modal) => modal.id !== removeModalId);
-			
-
 		},
 	},
 });

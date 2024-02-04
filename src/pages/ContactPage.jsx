@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import '../styles/Contact.css';
+import { useDispatch } from 'react-redux';
+import { modalActions } from '../store/modal-slice.js';
 
 const ContactPage = () => {
 	const [stateContact, setStateContact] = useState('');
@@ -18,8 +20,23 @@ const ContactPage = () => {
 		setStateContact('');
 	};
 	console.log(stateContact);
+
+	const dispatch = useDispatch();
+
+	const addModalToList = () => {
+		dispatch(
+			modalActions.addModal({
+				id: 'idContact',
+				title: 'titleModalContact',
+				description: 'descriptionModalContact',
+			})
+		);
+		//console.log(title);
+		//console.log(showList);
+	};
 	return (
 		<div className='contact'>
+			<button onClick={addModalToList}>DodajModal</button>
 			<form
 				onSubmit={(event) => {
 					event.preventDefault();
