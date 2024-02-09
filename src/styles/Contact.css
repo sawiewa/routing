@@ -6,7 +6,7 @@
 	line-height: 1.6;
 	border-radius: 2%;
 }
-.contact button {
+/* .contact button {
 	display: block;
 	margin: 0 19% 0 auto;
 	border: 2px solid black;
@@ -15,7 +15,7 @@
 	cursor: pointer;
 	font-size: 20px;
 	border-radius: 4%;
-}
+} */
 .contact button:hover {
 	color: yellow;
 	background-color: #0000;

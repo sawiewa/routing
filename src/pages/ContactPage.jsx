@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import '../styles/Contact.css';
-import { useDispatch } from 'react-redux';
-import { modalActions } from '../store/modal-slice.js';
+// import { useDispatch } from 'react-redux';
+// import { modalActions } from '../store/modal-slice.js';
+import { useAddModal } from '../hooks/useAddModal.js';
 
 const ContactPage = () => {
 	const [stateContact, setStateContact] = useState('');
-	//let [isBlocking, setIsBlocking] = useState(false);
+	const initialData = {
+		id: 'idContact',
+		title: 'titleContact',
+		description: 'descContact',
+	};
 
-	// usePrompt(
-	// 	'Hello from usePrompt -- Are you sure you want to leave?',
-	// 	isBlocking
-	// );
 	const handleChangeInput = (event) => {
 		setStateContact(event.target.value);
 		//setIsBlocking(event.target.value.length > 0);
@@ -20,23 +21,28 @@ const ContactPage = () => {
 		setStateContact('');
 	};
 	console.log(stateContact);
+	const { addModalToList } = useAddModal({
+		id: initialData.id,
+		title: initialData.title,
+		description: initialData.description,
+	});
 
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 
-	const addModalToList = () => {
-		dispatch(
-			modalActions.addModal({
-				id: 'idContact',
-				title: 'titleModalContact',
-				description: 'descriptionModalContact',
-			})
-		);
-		//console.log(title);
-		//console.log(showList);
-	};
+	// const addModalToList = () => {
+	// 	dispatch(
+	// 		modalActions.addModal({
+	// 			id: 'idContact',
+	// 			title: 'titleModalContact',
+	// 			description: 'descriptionModalContact',
+	// 		})
+	// 	);
+	//console.log(title);
+	//console.log(showList);
+	//};
 	return (
 		<div className='contact'>
-			<button onClick={addModalToList}>DodajModal</button>
+			<button onClick={(data) => addModalToList(data)}>DodajModal</button>
 			<form
 				onSubmit={(event) => {
 					event.preventDefault();
