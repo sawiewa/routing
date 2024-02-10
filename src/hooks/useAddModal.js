@@ -1,19 +1,28 @@
 import { useDispatch } from 'react-redux';
 import { modalActions } from '../store/modal-slice.js';
 
-export function useAddModal(initialData) {
+export function useAddModal() {
 	const dispatch = useDispatch();
-	const data = initialData;
 	//console.log(data);
-	const addModalToList = () => {
+	const addModalToList = (modalData) => {
 		dispatch(
 			modalActions.addModal({
-				id: data.id,
-				title: data.title,
-				description: data.description,
+				id: modalData.id,
+				title: modalData.title,
+				description: modalData.description,
 			})
 		);
 	};
 
-	return { data, addModalToList };
+	const removeModal = (modalData) => {
+		dispatch(
+			modalActions.removeModalFromList({
+				id: modalData.id,
+				title: modalData.title,
+				description: modalData.description,
+			})
+		);
+	};
+
+	return { addModalToList, removeModal };
 }

@@ -42,7 +42,7 @@ const ContactPage = () => {
 	//};
 	return (
 		<div className='contact'>
-			<button onClick={(data) => addModalToList(data)}>DodajModal</button>
+			<button onClick={addModalToList}>DodajModal</button>
 			<form
 				onSubmit={(event) => {
 					event.preventDefault();

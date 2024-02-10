@@ -7,20 +7,22 @@ const modalSlice = createSlice({
 	reducers: {
 		addModal(state, action) {
 			const newModal = action.payload;
-			const existingModal = state.modals.find(
-				(modal) => modal.id === newModal.id
-			);
-			if (!existingModal) {
+			// const existingModal = state.modals.find(
+			// 	(modal) => modal.id === newModal.id
+			// );
+			// if (existingModal) {
 			state.modals.push({
 				id: newModal.id,
 				title: newModal.title,
 				description: newModal.description,
 			});
-			}
 		},
+		//},
 		removeModalFromList(state, action) {
 			const removeModalId = action.payload;
-			state.modals = state.modals.filter((modal) => modal.id !== removeModalId);
+			// state.modals = state.modals.filter((modal) => modal.id !== removeModalId);
+			const index = state.modals.indexOf((modal) => modal.id === removeModalId);
+			state.modals = state.modals.splice(index, 1);
 		},
 	},
 });
