@@ -6,12 +6,14 @@ import { useAddModal } from '../hooks/useAddModal.js';
 
 const ContactPage = () => {
 	const [stateContact, setStateContact] = useState('');
-	const initialData = {
-		id: 'idContact',
-		title: 'titleContact',
-		description: 'descContact',
-	};
 
+
+	const id = 10 + Math.floor(Math.random() * 900);
+	const modalData = {
+		id: id,
+		title: `titleProduct ${id}`,
+		description: `descProduct ${id}`,
+	};
 	const handleChangeInput = (event) => {
 		setStateContact(event.target.value);
 		//setIsBlocking(event.target.value.length > 0);
@@ -21,11 +23,7 @@ const ContactPage = () => {
 		setStateContact('');
 	};
 	console.log(stateContact);
-	const { addModalToList } = useAddModal({
-		id: initialData.id,
-		title: initialData.title,
-		description: initialData.description,
-	});
+	const { addModalToList, removeModal } = useAddModal();
 
 	// const dispatch = useDispatch();
 
@@ -42,7 +40,8 @@ const ContactPage = () => {
 	//};
 	return (
 		<div className='contact'>
-			<button onClick={addModalToList}>DodajModal</button>
+			<button onClick={() => addModalToList(modalData)}>Dodaj modal</button>
+			<button onClick={() => removeModal(modalData.id)}>usuń modal</button>
 			<form
 				onSubmit={(event) => {
 					event.preventDefault();

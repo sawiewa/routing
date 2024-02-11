@@ -3,11 +3,13 @@
 import { useAddModal } from '../hooks/useAddModal';
 
 const ProductPage = () => {
-	const randomId = 10 + Math.floor(Math.random() * 900);
+
+
+	const id = 10 + Math.floor(Math.random() * 900);
 	const modalData = {
-		id: randomId,
-		title: `titleProduct ${randomId}`,
-		description: `descProduct ${randomId}`,
+		id: id,
+		title: `titleProduct ${id}`,
+		description: `descProduct ${id}`,
 	};
 	const { addModalToList, removeModal } = useAddModal();
 	// const dispatch = useDispatch();
@@ -25,9 +27,7 @@ const ProductPage = () => {
 		<>
 			<div>prod</div>
 			<button onClick={() => addModalToList(modalData)}>Dodaj modal</button>
-			<button onClick={() => removeModal(modalData)}>
-				usuń modal
-			</button>
+			<button onClick={() => removeModal(modalData.id)}>usuń modal</button>
 		</>
 	);
 };

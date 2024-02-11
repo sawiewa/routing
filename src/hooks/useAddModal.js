@@ -18,8 +18,8 @@ export function useAddModal() {
 		dispatch(
 			modalActions.removeModalFromList({
 				id: modalData.id,
-				title: modalData.title,
-				description: modalData.description,
+				// title: modalData.title,
+				// description: modalData.description,
 			})
 		);
 	};

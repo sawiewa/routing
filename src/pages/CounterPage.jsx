@@ -3,16 +3,13 @@ import Counter from '../components/Counter';
 // import { modalActions } from '../store/modal-slice.js';
 import { useAddModal } from '../hooks/useAddModal.js';
 const CounterPage = () => {
-	const initialData = {
-		id: 'idCounter',
-		title: 'titleCounter',
-		description: 'descCounter',
+	const id = 10 + Math.floor(Math.random() * 900);
+	const modalData = {
+		id: id,
+		title: `titleProduct ${id}`,
+		description: `descProduct ${id}`,
 	};
-	const { addModalToList } = useAddModal({
-		id: initialData.id,
-		title: initialData.title,
-		description: initialData.description,
-	});
+	const { addModalToList, removeModal } = useAddModal();
 	// const dispatch = useDispatch();
 
 	// const addModalToList = () => {
@@ -29,7 +26,8 @@ const CounterPage = () => {
 	return (
 		<>
 			<Counter />
-			<button onClick={addModalToList}>Dodaj modal</button>
+			<button onClick={() => addModalToList(modalData)}>Dodaj modal</button>
+			<button onClick={() => removeModal(modalData.id)}>usuń modal</button>
 		</>
 	);
 };

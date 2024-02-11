@@ -4,16 +4,13 @@ import Timer from '../components/Timer';
 import { useAddModal } from '../hooks/useAddModal';
 
 const TimerPage = () => {
-	const initialData = {
-		id: 'idTimer',
-		title: 'titleTimer',
-		description: 'descTimer',
+	const id = 10 + Math.floor(Math.random() * 900);
+	const modalData = {
+		id: id,
+		title: `titleProduct ${id}`,
+		description: `descProduct ${id}`,
 	};
-	const { addModalToList } = useAddModal({
-		id: initialData.id,
-		title: initialData.title,
-		description: initialData.description,
-	});
+	const { addModalToList, removeModal } = useAddModal();
 	// const dispatch = useDispatch();
 
 	// const addModalToList = () => {
@@ -29,7 +26,8 @@ const TimerPage = () => {
 	return (
 		<>
 			<Timer />
-			<button onClick={addModalToList}>Dodaj modal</button>
+			<button onClick={() => addModalToList(modalData)}>Dodaj modal</button>
+			<button onClick={() => removeModal(modalData.id)}>usuń modal</button>
 		</>
 	);
 };

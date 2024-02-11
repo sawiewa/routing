@@ -17,16 +17,13 @@ const HomePage = () => {
 
 	// };
 
-	const initialData = {
-		id: 'idHome',
-		title: 'titleHome',
-		description: 'descHome',
+	const id = 10 + Math.floor(Math.random() * 900);
+	const modalData = {
+		id: id,
+		title: `titleProduct ${id}`,
+		description: `descProduct ${id}`,
 	};
-	const { addModalToList } = useAddModal({
-		id: initialData.id,
-		title: initialData.title,
-		description: initialData.description,
-	});
+	const { addModalToList, removeModal } = useAddModal();
 
 	const artList = ARTICLES.map((article) => (
 		<Article
@@ -38,7 +35,8 @@ const HomePage = () => {
 	));
 	return (
 		<>
-			<button onClick={addModalToList}>Dodaj modal</button>
+			<button onClick={() => addModalToList(modalData)}>Dodaj modal</button>
+			<button onClick={() => removeModal(modalData.id)}>usuń modal</button>
 			<div className='home'>{artList}</div>
 		</>
 	);
