@@ -3,7 +3,17 @@ import Article from '../components/Article.jsx';
 // import { useDispatch } from 'react-redux';
 // import { modalActions } from '../store/modal-slice.js';
 import { useAddModal } from '../hooks/useAddModal.js';
+import { useSelector } from 'react-redux';
 const HomePage = () => {
+	const modalList = useSelector((state) => state.modal.modals);
+	console.log(modalList);
+	const { addModalToList, removeModal } = useAddModal();
+	const buttons = modalList.map((modal) => (
+		<button id={modal.id} key={modal.id} onClick={() => removeModal(modal.id)}>
+			remove modal id = {modal.id}
+		</button>
+	));
+
 	// const dispatch = useDispatch();
 
 	// const addModalToList = () => {
@@ -23,7 +33,6 @@ const HomePage = () => {
 		title: `titleProduct ${id}`,
 		description: `descProduct ${id}`,
 	};
-	const { addModalToList, removeModal } = useAddModal();
 
 	const artList = ARTICLES.map((article) => (
 		<Article
@@ -36,7 +45,8 @@ const HomePage = () => {
 	return (
 		<>
 			<button onClick={() => addModalToList(modalData)}>Dodaj modal</button>
-			<button onClick={() => removeModal(modalData.id)}>usuń modal</button>
+			{buttons}
+			{/* <button onClick={() => removeModal(modalData.id)}>usuń modal</button> */}
 			<div className='home'>{artList}</div>
 		</>
 	);

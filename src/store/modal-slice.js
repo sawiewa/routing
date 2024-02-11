@@ -17,7 +17,10 @@ const modalSlice = createSlice({
 				description: newModal.description,
 			});
 			console.log(newModal);
+			
 		},
+
+	
 		//},
 		removeModalFromList(state, action) {
 			const removeModalId = action.payload;

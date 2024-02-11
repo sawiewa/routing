@@ -23,6 +23,8 @@ const ProductPage = () => {
 	// 		})
 	// 	);
 	// };
+	
+
 	return (
 		<>
 			<div>prod</div>
