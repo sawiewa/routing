@@ -14,15 +14,15 @@ export function useAddModal() {
 		);
 	};
 
-	const removeModal = (modalData) => {
+	const removeModal = (id) => {
 		dispatch(
-			modalActions.removeModalFromList({
-				id: modalData.id,
-				// title: modalData.title,
-				// description: modalData.description,
-			})
+			modalActions.removeModalFromList(
+				id
+				// title: modal.title,
+				// description: modal.description,
+			)
 		);
 	};
 
-	return { addModalToList, removeModal};
+	return { addModalToList, removeModal };
 }

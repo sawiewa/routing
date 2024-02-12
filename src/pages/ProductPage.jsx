@@ -27,7 +27,7 @@ const ProductPage = () => {
 		<>
 			<div>prod</div>
 			<button onClick={() => addModalToList(modalData)}>Dodaj modal</button>
-			<button onClick={()=>removeModal(modalData.id)}>usuń modal</button>
+{/* <button onClick={()=>removeModal(modalData.id)}>usuń modal</button> */}
 		</>
 	);
 };
