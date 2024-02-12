@@ -6,7 +6,7 @@ import { useAddModal } from '../hooks/useAddModal.js';
 import { useSelector } from 'react-redux';
 const HomePage = () => {
 	const modalList = useSelector((state) => state.modal.modals);
-	console.log(modalList);
+	// console.log(modalList);
 	const { addModalToList, removeModal } = useAddModal();
 	const buttons = modalList.map((modal) => (
 		<button id={modal.id} key={modal.id} onClick={() => removeModal(modal.id)}>
@@ -14,24 +14,11 @@ const HomePage = () => {
 		</button>
 	));
 
-	// const dispatch = useDispatch();
-
-	// const addModalToList = () => {
-	// 	dispatch(
-	// 		modalActions.addModal({
-	// 			id: 'idHome',
-	// 			title: 'titleModalHome',
-	// 			description: 'descriptionModalHome',
-	// 		})
-	// 	);
-
-	// };
-
 	const id = 10 + Math.floor(Math.random() * 900);
 	const modalData = {
 		id: id,
-		title: `titleProduct ${id}`,
-		description: `descProduct ${id}`,
+		title: `homePageTitle ${id}`,
+		description: `deschomePage ${id}`,
 	};
 
 	const artList = ARTICLES.map((article) => (

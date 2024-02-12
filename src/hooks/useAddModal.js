@@ -14,10 +14,10 @@ export function useAddModal() {
 		);
 	};
 
-	const removeModal = (id) => {
+	const removeModal = (modalData) => {
 		dispatch(
 			modalActions.removeModalFromList({
-				id: id,
+				id: modalData.id,
 				// title: modalData.title,
 				// description: modalData.description,
 			})

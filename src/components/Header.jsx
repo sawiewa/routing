@@ -17,7 +17,7 @@ export default function Header() {
 		const IntervalId = setInterval(() => {
 			if (imageActiveIndex === images.length - 1) {
 				setImageActiveIndex(0);
-				console.log('ustawione index największy');
+				//console.log('ustawione index największy');
 			} else {
 				setImageActiveIndex(imageActiveIndex + 1);
 			}

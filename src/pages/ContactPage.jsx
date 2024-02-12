@@ -7,12 +7,11 @@ import { useAddModal } from '../hooks/useAddModal.js';
 const ContactPage = () => {
 	const [stateContact, setStateContact] = useState('');
 
-
 	const id = 10 + Math.floor(Math.random() * 900);
 	const modalData = {
 		id: id,
-		title: `titleProduct ${id}`,
-		description: `descProduct ${id}`,
+		title: `titleContact ${id}`,
+		description: `descContact ${id}`,
 	};
 	const handleChangeInput = (event) => {
 		setStateContact(event.target.value);

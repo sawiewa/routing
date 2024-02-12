@@ -6,8 +6,8 @@ const CounterPage = () => {
 	const id = 10 + Math.floor(Math.random() * 900);
 	const modalData = {
 		id: id,
-		title: `titleProduct ${id}`,
-		description: `descProduct ${id}`,
+		title: `titleCountert ${id}`,
+		description: `descCounter ${id}`,
 	};
 	const { addModalToList, removeModal } = useAddModal();
 	// const dispatch = useDispatch();

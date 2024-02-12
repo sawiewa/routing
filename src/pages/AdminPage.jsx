@@ -3,16 +3,13 @@ import Auth from '../components/Auth.js';
 // import { modalActions } from '../store/modal-slice.js';
 import { useAddModal } from '../hooks/useAddModal.js';
 const AdminPage = () => {
-	const initialData = {
-		id: 'idAdmin',
-		title: 'titleAdmin',
-		description: 'descAdmin',
+	const id = 10 + Math.floor(Math.random() * 900);
+	const modalData = {
+		id: id,
+		title: `titleAdmin ${id}`,
+		description: `descAdmin ${id}`,
 	};
-	const { addModalToList } = useAddModal({
-		id: initialData.id,
-		title: initialData.title,
-		description: initialData.description,
-	});
+	const { addModalToList, removeModal } = useAddModal();
 
 	// const dispatch = useDispatch();
 
@@ -30,7 +27,8 @@ const AdminPage = () => {
 	return (
 		<>
 			<Auth />
-			<button onClick={addModalToList}>Dodaj modal</button>
+			<button onClick={() => addModalToList(modalData)}>Dodaj modal</button>
+			<button onClick={() => removeModal(modalData.id)}>usuń modal</button>
 		</>
 	);
 };
