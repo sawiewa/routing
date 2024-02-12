@@ -15,12 +15,11 @@ const modalSlice = createSlice({
 				id: newModal.id,
 				title: newModal.title,
 				description: newModal.description,
+				page: newModal.page,
 			});
 			console.log(newModal);
-			
 		},
 
-	
 		//},
 		removeModalFromList(state, action) {
 			const removeModalId = action.payload;
@@ -28,7 +27,7 @@ const modalSlice = createSlice({
 			// const index = state.modals.indexOf((modal) => modal.id === removeModalId);
 			// state.modals.splice(index, 1);
 			// console.log(`index ${index}`);
-			 console.log(`remove modal ${removeModalId}`);
+			console.log(`remove modal ${removeModalId}`);
 		},
 	},
 });

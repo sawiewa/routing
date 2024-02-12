@@ -1,7 +1,5 @@
 import { ARTICLES } from '../pages/data.js';
 import Article from '../components/Article.jsx';
-// import { useDispatch } from 'react-redux';
-// import { modalActions } from '../store/modal-slice.js';
 import { useAddModal } from '../hooks/useAddModal.js';
 import { useSelector } from 'react-redux';
 const HomePage = () => {
@@ -13,13 +11,23 @@ const HomePage = () => {
 		id: id,
 		title: `homePageTitle ${id}`,
 		description: `deschomePage ${id}`,
+		page: 'home',
 	};
 	const { addModalToList, removeModal } = useAddModal();
-	const buttons = modalList.map((modal) => (
-		<button id={modal.id} key={modal.id} onClick={() => removeModal(modal.id)}>
-			remove modal id = {modal.id}
-		</button>
-	));
+
+	const buttons = modalList.map((modal) => {
+		if (modal.page === 'home') {
+			return (
+				<button
+					id={modal.id}
+					key={modal.id}
+					page={modal.page}
+					onClick={() => removeModal(modal.id)}>
+					remove modal {modal.id} {modal.page}
+				</button>
+			);
+		}
+	});
 
 	const artList = ARTICLES.map((article) => (
 		<Article

@@ -1,21 +1,20 @@
 import { useState } from 'react';
 import '../styles/Contact.css';
-// import { useDispatch } from 'react-redux';
-// import { modalActions } from '../store/modal-slice.js';
 import { useAddModal } from '../hooks/useAddModal.js';
+import { useSelector } from 'react-redux';
 
 const ContactPage = () => {
 	const [stateContact, setStateContact] = useState('');
-
+	const modalList = useSelector((state) => state.modal.modals);
 	const id = 10 + Math.floor(Math.random() * 900);
 	const modalData = {
 		id: id,
 		title: `titleContact ${id}`,
 		description: `descContact ${id}`,
+		page: 'contact',
 	};
 	const handleChangeInput = (event) => {
 		setStateContact(event.target.value);
-		//setIsBlocking(event.target.value.length > 0);
 	};
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -23,24 +22,23 @@ const ContactPage = () => {
 	};
 	console.log(stateContact);
 	const { addModalToList, removeModal } = useAddModal();
-
-	// const dispatch = useDispatch();
-
-	// const addModalToList = () => {
-	// 	dispatch(
-	// 		modalActions.addModal({
-	// 			id: 'idContact',
-	// 			title: 'titleModalContact',
-	// 			description: 'descriptionModalContact',
-	// 		})
-	// 	);
-	//console.log(title);
-	//console.log(showList);
-	//};
+	const buttons = modalList.map((modal) => {
+		if (modal.page === 'contact') {
+			return (
+				<button
+					id={modal.id}
+					key={modal.id}
+					page={modal.page}
+					onClick={() => removeModal(modal.id)}>
+					remove modal {modal.id} {modal.page}
+				</button>
+			);
+		}
+	});
 	return (
 		<div className='contact'>
 			<button onClick={() => addModalToList(modalData)}>Dodaj modal</button>
-			<button onClick={() => removeModal(modalData.id)}>usuń modal</button>
+			{buttons}
 			<form
 				onSubmit={(event) => {
 					event.preventDefault();

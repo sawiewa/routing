@@ -10,6 +10,7 @@ export function useAddModal() {
 				id: modalData.id,
 				title: modalData.title,
 				description: modalData.description,
+				page: modalData.page,
 			})
 		);
 	};
