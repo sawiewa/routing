@@ -5,7 +5,9 @@ import { useSelector } from 'react-redux';
 
 const ContactPage = () => {
 	const [stateContact, setStateContact] = useState('');
-	const modalList = useSelector((state) => state.modal.modals);
+	const modalList = useSelector((state) => state.modal.modals).filter(
+		(modal) => modal.page === 'contact'
+	);
 	const id = 10 + Math.floor(Math.random() * 900);
 	const modalData = {
 		id: id,
@@ -23,17 +25,15 @@ const ContactPage = () => {
 	console.log(stateContact);
 	const { addModalToList, removeModal } = useAddModal();
 	const buttons = modalList.map((modal) => {
-		if (modal.page === 'contact') {
-			return (
-				<button
-					id={modal.id}
-					key={modal.id}
-					page={modal.page}
-					onClick={() => removeModal(modal.id)}>
-					remove modal {modal.id} {modal.page}
-				</button>
-			);
-		}
+		return (
+			<button
+				id={modal.id}
+				key={modal.id}
+				page={modal.page}
+				onClick={() => removeModal(modal.id)}>
+				remove modal {modal.id} {modal.page}
+			</button>
+		);
 	});
 	return (
 		<div className='contact'>

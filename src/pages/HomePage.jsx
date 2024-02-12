@@ -3,7 +3,9 @@ import Article from '../components/Article.jsx';
 import { useAddModal } from '../hooks/useAddModal.js';
 import { useSelector } from 'react-redux';
 const HomePage = () => {
-	const modalList = useSelector((state) => state.modal.modals);
+	const modalList = useSelector((state) => state.modal.modals).filter(
+		(modal) => modal.page === 'home'
+	);
 	console.log(modalList);
 
 	const id = 10 + Math.floor(Math.random() * 900);
@@ -16,17 +18,15 @@ const HomePage = () => {
 	const { addModalToList, removeModal } = useAddModal();
 
 	const buttons = modalList.map((modal) => {
-		if (modal.page === 'home') {
-			return (
-				<button
-					id={modal.id}
-					key={modal.id}
-					page={modal.page}
-					onClick={() => removeModal(modal.id)}>
-					remove modal {modal.id} {modal.page}
-				</button>
-			);
-		}
+		return (
+			<button
+				id={modal.id}
+				key={modal.id}
+				page={modal.page}
+				onClick={() => removeModal(modal.id)}>
+				remove modal {modal.id} {modal.page}
+			</button>
+		);
 	});
 
 	const artList = ARTICLES.map((article) => (

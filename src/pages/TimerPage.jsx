@@ -3,7 +3,9 @@ import { useAddModal } from '../hooks/useAddModal';
 import { useSelector } from 'react-redux';
 
 const TimerPage = () => {
-	const modalList = useSelector((state) => state.modal.modals);
+	const modalList = useSelector((state) => state.modal.modals).filter(
+		(modal) => modal.page === 'timer'
+	);
 	const id = 10 + Math.floor(Math.random() * 900);
 	const modalData = {
 		id: id,
@@ -13,17 +15,15 @@ const TimerPage = () => {
 	};
 	const { addModalToList, removeModal } = useAddModal();
 	const buttons = modalList.map((modal) => {
-		if (modal.page === 'timer') {
-			return (
-				<button
-					id={modal.id}
-					key={modal.id}
-					page={modal.page}
-					onClick={() => removeModal(modal.id)}>
-					remove modal {modal.id} {modal.page}
-				</button>
-			);
-		}
+		return (
+			<button
+				id={modal.id}
+				key={modal.id}
+				page={modal.page}
+				onClick={() => removeModal(modal.id)}>
+				remove modal {modal.id} {modal.page}
+			</button>
+		);
 	});
 	return (
 		<>
