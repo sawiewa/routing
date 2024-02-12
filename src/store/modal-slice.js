@@ -24,10 +24,10 @@ const modalSlice = createSlice({
 		//},
 		removeModalFromList(state, action) {
 			const removeModalId = action.payload;
-			// state.modals = state.modals.filter((modal) => modal.id !== removeModalId);
-			const index = state.modals.indexOf((modal) => modal.id === removeModalId);
-			state.modals.splice(index, 1);
-			 console.log(`index ${index}`);
+			state.modals = state.modals.filter((modal) => modal.id !== removeModalId);
+			// const index = state.modals.indexOf((modal) => modal.id === removeModalId);
+			// state.modals.splice(index, 1);
+			// console.log(`index ${index}`);
 			 console.log(`remove modal ${removeModalId}`);
 		},
 	},
