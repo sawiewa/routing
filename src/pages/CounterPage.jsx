@@ -1,10 +1,14 @@
 import Counter from '../components/Counter';
 import { useAddModal } from '../hooks/useAddModal.js';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 const CounterPage = () => {
 	const modalList = useSelector((state) => state.modal.modals).filter(
 		(modal) => modal.page === 'counter'
 	);
+	const modalListAll = useSelector((state) => state.modal.modals);
+	const { addModalToList, removeModal, removeAllModals } = useAddModal();
+
 	const id = 10 + Math.floor(Math.random() * 900);
 	const modalData = {
 		id: id,
@@ -12,7 +16,12 @@ const CounterPage = () => {
 		description: `descCounter ${id}`,
 		page: 'counter',
 	};
-	const { addModalToList, removeModal } = useAddModal();
+
+	useEffect(() => {
+		modalListAll.map((modal) => {
+			return removeAllModals(modal.page);
+		});
+	}, []);
 
 	const buttons = modalList.map((modal) => {
 		return (

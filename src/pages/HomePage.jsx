@@ -2,12 +2,19 @@ import { ARTICLES } from '../pages/data.js';
 import Article from '../components/Article.jsx';
 import { useAddModal } from '../hooks/useAddModal.js';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 const HomePage = () => {
 	const modalList = useSelector((state) => state.modal.modals).filter(
 		(modal) => modal.page === 'home'
 	);
+	const modalListAll = useSelector((state) => state.modal.modals);
 	console.log(modalList);
-
+	useEffect(() => {
+		modalListAll.map((modal) => {
+			return removeAllModals(modal.page);
+		});
+	}, []);
+	const { addModalToList, removeModal, removeAllModals } = useAddModal();
 	const id = 10 + Math.floor(Math.random() * 900);
 	const modalData = {
 		id: id,
@@ -15,7 +22,6 @@ const HomePage = () => {
 		description: `deschomePage ${id}`,
 		page: 'home',
 	};
-	const { addModalToList, removeModal } = useAddModal();
 
 	const buttons = modalList.map((modal) => {
 		return (

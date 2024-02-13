@@ -7,9 +7,11 @@ import Footer from './components/Footer';
 import { useSelector } from 'react-redux';
 
 
+
 function App() {
 	const modalList = useSelector((state) => state.modal.modals);
 	console.log(modalList);
+
 
 	return (
 		<BrowserRouter>
