@@ -29,13 +29,11 @@ const modalSlice = createSlice({
 			// console.log(`index ${index}`);
 			console.log(`remove modal ${removeModalId}`);
 		},
-		removeAllModalFromList(state, action) {
-			const removeModals = action.payload;
-			state.modals = state.modals.filter((modal) => modal.page === removeModals);
-			// const index = state.modals.indexOf((modal) => modal.id === removeModalId);
-			// state.modals.splice(index, 1);
-			// console.log(`index ${index}`);
-			console.log(`remove modals ${removeModals}`);
+		removeAllModalFromList(state) {
+			//const removeModals = action.payload;
+			// state.modals = state.modals.filter((modal) => modal.page === removeModals);
+			state.modals = [];
+			//console.log(`remove modals ${removeModals}`);
 		},
 	},
 });

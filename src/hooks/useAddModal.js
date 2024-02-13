@@ -5,6 +5,12 @@ import { useEffect } from 'react';
 export function useAddModal() {
 	const dispatch = useDispatch();
 	//console.log(data);
+
+	useEffect(() => {
+
+		return () => dispatch(modalActions.removeAllModalFromList());
+	}, []);
+
 	const addModalToList = (modalData) => {
 		dispatch(
 			modalActions.addModal({
@@ -20,9 +26,5 @@ export function useAddModal() {
 		dispatch(modalActions.removeModalFromList(id));
 	};
 
-	const removeAllModals = (page) => {
-			dispatch(modalActions.removeAllModalFromList(page));
-		};
-
-	return { addModalToList, removeModal,removeAllModals };
+	return { addModalToList, removeModal };
 }

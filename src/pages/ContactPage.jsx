@@ -2,18 +2,14 @@ import { useState } from 'react';
 import '../styles/Contact.css';
 import { useAddModal } from '../hooks/useAddModal.js';
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
+
 const ContactPage = () => {
 	const [stateContact, setStateContact] = useState('');
 	const modalList = useSelector((state) => state.modal.modals).filter(
 		(modal) => modal.page === 'contact'
 	);
-	const modalListAll = useSelector((state) => state.modal.modals);
-	useEffect(() => {
-		modalListAll.map((modal) => {
-			return removeAllModals(modal.page);
-		});
-	}, []);
+	
+	
 	
 	const id = 10 + Math.floor(Math.random() * 900);
 	const modalData = {
@@ -30,7 +26,7 @@ const ContactPage = () => {
 		setStateContact('');
 	};
 	console.log(stateContact);
-	const { addModalToList, removeModal, removeAllModals } = useAddModal();
+	const { addModalToList, removeModal } = useAddModal();
 	const buttons = modalList.map((modal) => {
 		return (
 			<button
