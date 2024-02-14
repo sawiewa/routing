@@ -1,16 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initial = { modals: [] };
+const initial = {
+	modals: [
+		{
+			id: 'idTest1',
+			title: 'titleTestowy1',
+			description: 'descTestowy1',
+			page: 'test1',
+		},
+		{
+			id: '1idtes2',
+			title: 'titleTestowy2',
+			description: 'descTestowy2',
+			page: 'test2',
+		},
+	],
+};
 const modalSlice = createSlice({
 	name: 'modal',
 	initialState: initial,
 	reducers: {
 		addModal(state, action) {
 			const newModal = action.payload;
-			// const existingModal = state.modals.find(
-			// 	(modal) => modal.id === newModal.id
-			// );
-			// if (existingModal) {
 			state.modals.push({
 				id: newModal.id,
 				title: newModal.title,
@@ -24,16 +35,14 @@ const modalSlice = createSlice({
 		removeModalFromList(state, action) {
 			const removeModalId = action.payload;
 			state.modals = state.modals.filter((modal) => modal.id !== removeModalId);
-			// const index = state.modals.indexOf((modal) => modal.id === removeModalId);
-			// state.modals.splice(index, 1);
-			// console.log(`index ${index}`);
 			console.log(`remove modal ${removeModalId}`);
 		},
-		removeAllModalFromList(state) {
-			//const removeModals = action.payload;
-			// state.modals = state.modals.filter((modal) => modal.page === removeModals);
-			state.modals = [];
-			//console.log(`remove modals ${removeModals}`);
+		removeAllModalFromList(state, action) {
+			const removeModalsPage = action.payload;
+			state.modals = state.modals.filter(
+				(modal) => modal.page !== removeModalsPage
+			);
+			console.log(`remove modals ${removeModalsPage}`);
 		},
 	},
 });

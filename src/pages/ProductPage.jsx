@@ -1,9 +1,8 @@
 import { useAddModal } from '../hooks/useAddModal';
 import { useSelector } from 'react-redux';
 
-
 const ProductPage = () => {
-	const { addModalToList, removeModal } = useAddModal();
+	const { addModalToList, removeModal } = useAddModal('product');
 	const modalList = useSelector((state) => state.modal.modals).filter(
 		(modal) => modal.page === 'product'
 	);
@@ -16,7 +15,7 @@ const ProductPage = () => {
 		description: `descProduct ${id}`,
 		page: 'product',
 	};
-	
+
 	const buttons = modalList.map((modal) => {
 		return (
 			<button

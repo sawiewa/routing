@@ -4,13 +4,12 @@ import { useAddModal } from '../hooks/useAddModal.js';
 import { useSelector } from 'react-redux';
 
 const HomePage = () => {
+	const { addModalToList, removeModal } = useAddModal('home');
 	const modalList = useSelector((state) => state.modal.modals).filter(
 		(modal) => modal.page === 'home'
 	);
-	
 	console.log(modalList);
-	
-	const { addModalToList, removeModal } = useAddModal();
+
 	const id = 10 + Math.floor(Math.random() * 900);
 	const modalData = {
 		id: id,
@@ -43,7 +42,6 @@ const HomePage = () => {
 		<>
 			<button onClick={() => addModalToList(modalData)}>Dodaj modal</button>
 			{buttons}
-			{/* <button onClick={() => removeModal(modalData.id)}>usuń modal</button> */}
 			<div className='home'>{artList}</div>
 		</>
 	);

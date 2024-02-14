@@ -3,7 +3,7 @@ import { useAddModal } from '../hooks/useAddModal';
 import { useSelector } from 'react-redux';
 
 const TimerPage = () => {
-	const { addModalToList, removeModal } = useAddModal();
+	const { addModalToList, removeModal } = useAddModal('timer');
 	const modalList = useSelector((state) => state.modal.modals).filter(
 		(modal) => modal.page === 'timer'
 	);
@@ -15,7 +15,7 @@ const TimerPage = () => {
 		description: `descTimer ${id}`,
 		page: 'timer',
 	};
-	
+
 	const buttons = modalList.map((modal) => {
 		return (
 			<button

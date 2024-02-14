@@ -2,13 +2,12 @@ import { useDispatch } from 'react-redux';
 import { modalActions } from '../store/modal-slice.js';
 import { useEffect } from 'react';
 
-export function useAddModal() {
+export function useAddModal(page) {
 	const dispatch = useDispatch();
-	//console.log(data);
-
 	useEffect(() => {
-
-		return () => dispatch(modalActions.removeAllModalFromList());
+		return () => {
+			dispatch(modalActions.removeAllModalFromList(page));
+		};
 	}, []);
 
 	const addModalToList = (modalData) => {
