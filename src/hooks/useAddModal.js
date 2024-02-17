@@ -24,6 +24,10 @@ export function useAddModal(page) {
 	const removeModal = (id) => {
 		dispatch(modalActions.removeModalFromList(id));
 	};
+	const removeAllModals = (page) => {
+		dispatch(modalActions.removeAllModalFromListInPage(page));
+		console.log('probuje usunąć ' + page);
+	};
 
-	return { addModalToList, removeModal };
+	return { addModalToList, removeModal, removeAllModals };
 }

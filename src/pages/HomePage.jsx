@@ -2,9 +2,11 @@ import { ARTICLES } from '../pages/data.js';
 import Article from '../components/Article.jsx';
 import { useAddModal } from '../hooks/useAddModal.js';
 import { useSelector } from 'react-redux';
+import ModalNew from '../components/ModalNew.jsx';
+//import { modalActions } from '../store/modal-slice.js';
 
 const HomePage = () => {
-	const { addModalToList, removeModal } = useAddModal('home');
+	const { addModalToList, removeModal, removeAllModals } = useAddModal('home');
 	const modalList = useSelector((state) => state.modal.modals).filter(
 		(modal) => modal.page === 'home'
 	);
@@ -18,15 +20,34 @@ const HomePage = () => {
 		page: 'home',
 	};
 
-	const buttons = modalList.map((modal) => {
+	const handleModal = (modal) => {
+		console.log(`zmodala ${modal}`);
+		removeModal(modal);
+	};
+
+	const openModal = (modalData) => {
+		addModalToList(modalData);
+	};
+	// const buttons = modalList.map((modal) => {
+	// 	return (
+	// 		<button
+	// 			id={modal.id}
+	// 			key={modal.id}
+	// 			page={modal.page}
+	// 			onClick={() => removeModal(modal.id)}>
+	// 			remove modal {modal.id} {modal.page}
+	// 		</button>
+	// 	);
+	// });
+
+	const modals = modalList.map((modal) => {
 		return (
-			<button
-				id={modal.id}
+			<ModalNew
 				key={modal.id}
-				page={modal.page}
-				onClick={() => removeModal(modal.id)}>
-				remove modal {modal.id} {modal.page}
-			</button>
+				title={modal.title}
+				description={modal.description}
+				removeModal={() => handleModal(modal.id)}
+				removeAllModals={() => removeAllModals(modal.page)}></ModalNew>
 		);
 	});
 
@@ -40,8 +61,9 @@ const HomePage = () => {
 	));
 	return (
 		<>
-			<button onClick={() => addModalToList(modalData)}>Dodaj modal</button>
-			{buttons}
+			<button onClick={() => openModal(modalData)}>Dodaj modal</button>
+			{/* {buttons} */}
+			{modals}
 			<div className='home'>{artList}</div>
 		</>
 	);

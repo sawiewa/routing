@@ -24,6 +24,10 @@ const ContactPage = () => {
 		setStateContact('');
 	};
 	console.log(stateContact);
+	const onClick = (id) => {
+		removeModal(id);
+	};
+
 	const { addModalToList, removeModal } = useAddModal('contact');
 	const buttons = modalList.map((modal) => {
 		return (
@@ -31,7 +35,9 @@ const ContactPage = () => {
 				id={modal.id}
 				key={modal.id}
 				page={modal.page}
-				onClick={() => removeModal(modal.id)}>
+				onClick={() => {
+					onClick(modal.id);
+				}}>
 				remove modal {modal.id} {modal.page}
 			</button>
 		);

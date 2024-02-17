@@ -44,6 +44,14 @@ const modalSlice = createSlice({
 			);
 			console.log(`remove modals ${removeModalsPage}`);
 		},
+		removeAllModalFromListInPage(state, action) {
+			const removeModalsPage = action.payload;
+			state.modals = state.modals.filter(
+				(modal) => modal.page !== removeModalsPage
+			);
+			console.log(`remove modals ${removeModalsPage}`);
+		},
+		
 	},
 });
 export const modalActions = modalSlice.actions;

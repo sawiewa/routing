@@ -32,9 +32,7 @@ section.page {
 }
 
 .dialog {
-	height: fit-content;
-	width: fit-content;
-	background-color: #417080;
+	background-color: #dae5e9;
 	border: none;
 	border-radius: 20px;
 	font-size: 12px;
@@ -42,11 +40,35 @@ section.page {
 	position: absolute;
 	top: 50%;
 	left: 50%;
+	min-height: 200px;
+	min-width: 300px;
 	transform: translate(-50%, -50%);
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	display: flex;
+	flex-direction: column;
+	padding: 25px;
+}
+dialog:modal {
+	background-color: #dae5e9;
+	border: none;
+	border-radius: 20px;
+	font-size: 12px;
+	padding: 20px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	min-height: 200px;
+	min-width: 300px;
+	transform: translate(-50%, -50%);
+	box-shadow: rgba(87, 12, 12, 0.35) 0px 5px 15px;
+	display: flex;
+	flex-direction: column;
+	padding: 25px;
+	justify-content: space-around;
 }
 
 .dialog[open]::backdrop {
-	background-color: rgba(5, 5, 17, 0.25);
+	background-color: rgba(13, 13, 11, 0.25);
 }
 .dialog button {
 	padding: 0.5rem 1rem;
@@ -69,4 +91,35 @@ section.page {
 .dialog button:hover {
 	background-color: #6d8185;
 	color: #0a0d0d;
+}
+
+.dialog .title {
+	text-align: center;
+	font-size: 18px;
+	text-decoration: underline;
+	text-transform: uppercase;
+	margin-bottom: 20px;
+}
+.dialog .description {
+	text-align: center;
+	font-size: 15px;
+}
+
+.titleCloseBtn {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.titleCloseBtn button {
+	background-color: transparent;
+	border: none;
+	font-size: 25px;
+	cursor: pointer;
+}
+
+.dialog .footer {
+	flex: 20%;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
 }
