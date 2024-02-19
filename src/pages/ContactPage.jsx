@@ -8,6 +8,7 @@ const ContactPage = () => {
 	const modalList = useSelector((state) => state.modal.modals).filter(
 		(modal) => modal.page === 'contact'
 	);
+	
 
 	const id = 10 + Math.floor(Math.random() * 900);
 	const modalData = {
@@ -28,7 +29,7 @@ const ContactPage = () => {
 		removeModal(id);
 	};
 
-	const { addModalToList, removeModal } = useAddModal('contact');
+	const { addModalToList, removeModal } = useAddModal(modalList);
 	const buttons = modalList.map((modal) => {
 		return (
 			<button

@@ -1,13 +1,15 @@
 import { useAddModal } from '../hooks/useAddModal';
 import { useSelector } from 'react-redux';
+//import { useState } from 'react';
 
 const ProductPage = () => {
-	const { addModalToList, removeModal } = useAddModal('product');
-	const modalList = useSelector((state) => state.modal.modals).filter(
+	const modals = useSelector((state) => state.modal.modals).filter(
 		(modal) => modal.page === 'product'
 	);
-	console.log(modalList);
 
+	console.log(modals);
+
+	const { addModalToList, removeModal} = useAddModal(modals);
 	const id = 10 + Math.floor(Math.random() * 900);
 	const modalData = {
 		id: id,
@@ -16,7 +18,7 @@ const ProductPage = () => {
 		page: 'product',
 	};
 
-	const buttons = modalList.map((modal) => {
+	const buttons = modals.map((modal) => {
 		return (
 			<button
 				id={modal.id}
@@ -28,10 +30,14 @@ const ProductPage = () => {
 		);
 	});
 
+	const addModal = (modal) => {
+		addModalToList(modal);
+	};
+
 	return (
 		<>
 			<div>prod</div>
-			<button onClick={() => addModalToList(modalData)}>Dodaj modal</button>
+			<button onClick={() => addModal(modalData)}>Dodaj modal</button>
 			{buttons}
 		</>
 	);

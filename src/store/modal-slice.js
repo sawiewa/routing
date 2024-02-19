@@ -40,18 +40,23 @@ const modalSlice = createSlice({
 		removeAllModalFromList(state, action) {
 			const removeModalsPage = action.payload;
 			state.modals = state.modals.filter(
-				(modal) => modal.page !== removeModalsPage
+				(modal) => modal !== removeModalsPage
 			);
 			console.log(`remove modals ${removeModalsPage}`);
 		},
 		removeAllModalFromListInPage(state, action) {
 			const removeModalsPage = action.payload;
 			state.modals = state.modals.filter(
-				(modal) => modal.page !== removeModalsPage
+				(modal) => modal.page === removeModalsPage
 			);
 			console.log(`remove modals ${removeModalsPage}`);
 		},
-		
+
+		removeAllModalFromComponent(state) {
+			state.modals = initial.modals;
+			
+		},
+
 	},
 });
 export const modalActions = modalSlice.actions;
