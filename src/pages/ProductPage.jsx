@@ -6,10 +6,13 @@ const ProductPage = () => {
 	const modals = useSelector((state) => state.modal.modals).filter(
 		(modal) => modal.page === 'product'
 	);
-
+	
 	console.log(modals);
 
-	const { addModalToList, removeModal} = useAddModal(modals);
+	const { addModalToList, removeModal, setActualList, actualList } =
+		useAddModal(modals);
+
+	
 	const id = 10 + Math.floor(Math.random() * 900);
 	const modalData = {
 		id: id,
@@ -32,8 +35,9 @@ const ProductPage = () => {
 
 	const addModal = (modal) => {
 		addModalToList(modal);
+		setActualList(()=>modals);
 	};
-
+	console.log({ actualList });
 	return (
 		<>
 			<div>prod</div>

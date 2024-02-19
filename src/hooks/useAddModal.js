@@ -4,24 +4,28 @@ import { useEffect, useState } from 'react';
 export function useAddModal(modals) {
 	const dispatch = useDispatch();
 	const [actualList, setActualList] = useState(modals);
-	//console.log(actualList);
+	
 	
 	useEffect(() => {
 		
 		return () => {
 			
-			dispatch(modalActions.removeAllModalFromList(actualList));
+			dispatch(modalActions.removeAllModalFromList({ actualList }));
+			console.log({actualList});
+			
 		};
-	}, []);
+	
+	}, [actualList, dispatch]);
 
 	const addModalToList = (modal) => {
+		
 		dispatch(
 			modalActions.addModal({
 				id: modal.id,
 				title: modal.title,
 				description: modal.description,
 				page: modal.page,
-			}),
+			})
 		);
 	};
 
@@ -33,5 +37,11 @@ export function useAddModal(modals) {
 		console.log('probuje usunąć ' + modal);
 	};
 
-	return { addModalToList, removeModal, removeAllModals };
+	return {
+		addModalToList,
+		removeModal,
+		removeAllModals,
+		setActualList,
+		actualList,
+	};
 }

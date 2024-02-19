@@ -30,6 +30,7 @@ const modalSlice = createSlice({
 			});
 			console.log(newModal);
 		},
+		
 
 		//},
 		removeModalFromList(state, action) {
@@ -39,9 +40,9 @@ const modalSlice = createSlice({
 		},
 		removeAllModalFromList(state, action) {
 			const removeModalsPage = action.payload;
-			state.modals = state.modals.filter(
-				(modal) => modal !== removeModalsPage
-			);
+			// state.modals = state.modals.filter(
+			// 	(modal) => modal !== removeModalsPage.page
+			// );
 			console.log(`remove modals ${removeModalsPage}`);
 		},
 		removeAllModalFromListInPage(state, action) {
