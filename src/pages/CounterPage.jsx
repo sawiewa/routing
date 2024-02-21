@@ -3,14 +3,14 @@ import { useAddModal } from '../hooks/useAddModal.js';
 import { useSelector } from 'react-redux';
 
 const CounterPage = () => {
-	const modalList = useSelector((state) => state.modal.modals).filter(
+	let modalList = useSelector((state) => state.modal.modals).filter(
 		(modal) => modal.page === 'counter'
 	);
-	
-	const { addModalToList, removeModal, setActualList } =
-		useAddModal();
+
+	const { addModalToList, removeModal, setActualList, actualList } =
+		useAddModal(modalList);
 	const id = 10 + Math.floor(Math.random() * 900);
-	
+
 	const modalData = {
 		id: id,
 		title: `titleCountert ${id}`,
@@ -20,6 +20,7 @@ const CounterPage = () => {
 
 	const addModal = (modal) => {
 		addModalToList(modal);
+		//modalList = actualList;
 		setActualList(modalList);
 	};
 	console.log(modalList);

@@ -2,30 +2,32 @@ import { useDispatch } from 'react-redux';
 import { modalActions } from '../store/modal-slice.js';
 import { useEffect, useState } from 'react';
 //import { useSelector } from 'react-redux';
-export function useAddModal() {
+export function useAddModal(modalList) {
 	const dispatch = useDispatch();
 	//const modals = useSelector((state) => state.modal.modals);
-	const [actualList, setActualList] = useState({});
+	const [actualList, setActualList] = useState(modalList);
 	console.log(actualList);
 	const actualLength = actualList.length;
+
 	useEffect(() => {
 		// dispatch(modalActions.removeModalFromList(actualList.id));
-		//setActualList();
-
-		return () => {
+		
 			for (let i = 0; i < actualLength; i++) {
-				removeModal();
+				dispatch(modalActions.removeModalFromList(actualList.id));
 			}
 			for (let i = 0; i < actualLength; i++) {
 				console.log('usuwanie z actual list');
+				console.log(actualList.id);
 			}
+
+		
 
 			// return () => {
 			// 	dispatch(modalActions.removeAllModalFromList({ actualList }));
 			// 	console.log({ actualList });
 			// };
-		};
-	}, []);
+		
+	}, [actualList.id, actualLength,dispatch]);
 
 	const addModalToList = (modal) => {
 		dispatch(
