@@ -29,7 +29,7 @@ const ContactPage = () => {
 		removeModal(id);
 	};
 
-	const { addModalToList, removeModal } = useAddModal(modalList);
+	const { addModalToList, removeModal } = useAddModal('contact');
 	const buttons = modalList.map((modal) => {
 		return (
 			<button
