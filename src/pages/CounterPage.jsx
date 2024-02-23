@@ -6,8 +6,8 @@ const CounterPage = () => {
 	let modalList = useSelector((state) => state.modal.modals).filter(
 		(modal) => modal.page === 'counter'
 	);
-
-	const { addModalToList, removeModal, setActualList, actualList } =
+	
+	const { addModalToList, removeModal,actualList } =
 		useAddModal(modalList);
 	const id = 10 + Math.floor(Math.random() * 900);
 
@@ -20,11 +20,10 @@ const CounterPage = () => {
 
 	const addModal = (modal) => {
 		addModalToList(modal);
-		//modalList = actualList;
-		setActualList(modalList);
+		
 	};
-	console.log(modalList);
-	const buttons = modalList.map((modal) => {
+
+	const buttons = actualList.map((modal) => {
 		return (
 			<button
 				id={modal.id}

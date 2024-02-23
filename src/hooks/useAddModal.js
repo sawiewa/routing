@@ -1,35 +1,24 @@
 import { useDispatch } from 'react-redux';
 import { modalActions } from '../store/modal-slice.js';
 import { useEffect, useState } from 'react';
-//import { useSelector } from 'react-redux';
-export function useAddModal(modalList) {
+export function useAddModal() {
 	const dispatch = useDispatch();
-	//const modals = useSelector((state) => state.modal.modals);
-	const [actualList, setActualList] = useState(modalList);
+	const [actualList, setActualList] = useState([]);
 	console.log(actualList);
-	const actualLength = actualList.length;
 
+	//podejście nie zadziała ponieważ po kazdym dodaniu modala wywoływana jest funkcja czyszcząca,
+	//gdyby tablica zależności była pusta to useEffect uruchomiłby się tylko po zamontowaniu i odmontowywaniu komponentu
+	//w poniższym przykładzie tablica zależności jest uzupełniona, i kazde dodanie modala aktualizuje stan actualList z czym wiąże odpalenie czyszczenia i wszystko co dodane zostaje czyszczone
 	useEffect(() => {
-		// dispatch(modalActions.removeModalFromList(actualList.id));
-		
-			for (let i = 0; i < actualLength; i++) {
-				dispatch(modalActions.removeModalFromList(actualList.id));
-			}
-			for (let i = 0; i < actualLength; i++) {
-				console.log('usuwanie z actual list');
-				console.log(actualList.id);
-			}
-
-		
-
-			// return () => {
-			// 	dispatch(modalActions.removeAllModalFromList({ actualList }));
-			// 	console.log({ actualList });
-			// };
-		
-	}, [actualList.id, actualLength,dispatch]);
+		return () => {
+			actualList.forEach((modal) =>
+				dispatch(modalActions.removeModalFromList(modal.id))
+			);
+		};
+	}, [actualList, dispatch]);
 
 	const addModalToList = (modal) => {
+		setActualList([...actualList, modal]);
 		dispatch(
 			modalActions.addModal({
 				id: modal.id,
@@ -39,7 +28,6 @@ export function useAddModal(modalList) {
 			})
 		);
 	};
-
 	const removeModal = (id) => {
 		dispatch(modalActions.removeModalFromList(id));
 	};
@@ -52,7 +40,6 @@ export function useAddModal(modalList) {
 		addModalToList,
 		removeModal,
 		removeAllModals,
-		setActualList,
 		actualList,
 	};
 }
